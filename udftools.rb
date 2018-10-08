@@ -4,8 +4,8 @@ class Udftools < Formula
 
   head "https://github.com/gmerlino/udftools.git", :branch => "brew"
 
-  depends_on "automake" => :build
   depends_on "autoconf" => :build
+  depends_on "automake" => :build
   depends_on "libtool" => :build
 
   conflicts_with "udffsck", :because => "both install `udffsck` binary"
@@ -17,5 +17,9 @@ class Udftools < Formula
     end
     system "./configure", "--prefix=#{prefix}"
     system "make", "install"
+  end
+
+  test do
+    system "#{bin}/mkudffs", "--help"
   end
 end
